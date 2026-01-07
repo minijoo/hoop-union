@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 const BASE_URL = process.env.NODE_ENV === 'production' ? 
   "https://demo.jordys.site" : "http://localhost:8000"
 
-const BoxScore = ({ gameData }) => {
+const BoxScore = ({ gameData }: {gameData: any}) => {
   // If no game data is provided, show sample data
   const defaultGameData = {
     away: "Celtics",
@@ -31,12 +31,12 @@ const BoxScore = ({ gameData }) => {
   const game = gameData || defaultGameData;
 
   // Separate players by team (side: 0 = home, 1 = away)
-  const homePlayers = game.lines.filter(line => line.side === 0);
-  const awayPlayers = game.lines.filter(line => line.side === 1);
+  const homePlayers = game.lines.filter((line: any) => line.side === 0);
+  const awayPlayers = game.lines.filter((line: any) => line.side === 1);
 
   // Calculate totals for a team
-  const calculateTotals = (players) => {
-    return players.reduce((totals, player) => ({
+  const calculateTotals = (players: any) => {
+    return players.reduce((totals :any, player :any) => ({
       pts: totals.pts + player.pts,
       fgm: totals.fgm + player.fgm,
       fga: totals.fga + player.fga,
@@ -207,7 +207,7 @@ const BoxScore = ({ gameData }) => {
               </tr>
             </thead>
             <tbody>
-              {awayPlayers.map((player, idx) => (
+              {awayPlayers.map((player :any, idx :number) => (
                 <tr key={idx} className="border-b border-gray-200">
                   <td className="p-1 md:p-3 text-center font-bold whitespace-nowrap">#{player.num}</td>
                   <td className="p-1 md:p-3 text-center">{player.pts}</td>
@@ -266,7 +266,7 @@ const BoxScore = ({ gameData }) => {
               </tr>
             </thead>
             <tbody>
-              {homePlayers.map((player, idx) => (
+              {homePlayers.map((player :any, idx :number) => (
                 <tr key={idx} className="border-b border-gray-200">
                   <td className="p-1 md:p-3 text-center font-bold whitespace-nowrap">#{player.num}</td>
                   <td className="p-1 md:p-3 text-center">{player.pts}</td>

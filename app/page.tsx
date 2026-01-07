@@ -6,7 +6,7 @@ const BASE_URL = process.env.NODE_ENV === 'production' ?
 
 function GameSummary({
   league, title, submittedOn, away, home, periodScores, leaders, baseGameId
-}) {
+} :any) {
   const PLAYER_LABEL = 'Player'
   const awayFinalScore = periodScores[3][0];
   const homeFinalScore = periodScores[3][1];
@@ -211,7 +211,7 @@ function GameSummary({
 export default async function Home() {
   const resp = await fetch(`${BASE_URL}/games/public/all`)
   const games = (await resp.json()).reverse()
-  games.forEach((game) => {
+  games.forEach((game :any) => {
     game.leaders = [{},{}]
     game.leaders[0].pts = [0]
     game.leaders[0].ast = [0]
@@ -221,7 +221,7 @@ export default async function Home() {
     game.leaders[1].ast = [0]
     game.leaders[1].reb = [0]
     game.leaders[1].def = [0,0]
-    game.lines.forEach(line => {
+    game.lines.forEach((line :any)=> {
       if (line.side >= 2) return
       if (line.pts >= game.leaders[line.side].pts[0]) {
         game.leaders[line.side].pts = [line.pts, line.num]
@@ -269,7 +269,7 @@ export default async function Home() {
           <div className="font-semibold text-xl">
             Recent Games Worldwide
           </div>
-          {games.map(game => (
+          {games.map((game :any) => (
             <GameSummary key={game.base_game_id}
               league={game.league}
               title={game.title}
