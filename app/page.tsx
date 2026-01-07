@@ -210,7 +210,8 @@ function GameSummary({
 
 export default async function Home() {
   const resp = await fetch(`${BASE_URL}/games/public/all`)
-  const games = (await resp.json()).reverse()
+  const respGames = await resp.json()
+  const games = respGames ? respGames.reverse() : []
   games.forEach((game :any) => {
     game.leaders = [{},{}]
     game.leaders[0].pts = [0]
