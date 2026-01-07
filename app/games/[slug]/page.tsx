@@ -113,7 +113,7 @@ const BoxScore = ({ gameData }: {gameData: any}) => {
   const periods = processPeriodScores();
 
   return (
-    <div className="p-2 md:p-5 bg-gray-100 min-h-screen">
+    <div className="p-2 md:p-5 bg-gray-100 min-h-screen w-full">
       <style>{`
         td:first-child {
           position: sticky;
@@ -314,5 +314,11 @@ export default async function Game({
   const game = await res.json()
   console.log(game)
 
-  return (<BoxScore gameData={game} />);
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans">
+      <main className="flex min-h-screen w-full max-w-4xl flex-col items-center justify-start bg-white sm:items-start">
+        <BoxScore gameData={game} />
+      </main>
+    </div>
+  );
 }
