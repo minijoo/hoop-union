@@ -2,7 +2,7 @@
 import { useEffect, useState, useRef } from "react";
 import { FaRegCircleXmark } from "react-icons/fa6"
 
-const parseRecentSearches = (jsonStr) => {
+const parseRecentSearches = (jsonStr :any) => {
   let recents
   try {
     recents = JSON.parse(jsonStr)
@@ -14,7 +14,7 @@ const parseRecentSearches = (jsonStr) => {
   return recents
 }
 
-const saveToLocalStorageThenGoToLeaguePage = (league) => {
+const saveToLocalStorageThenGoToLeaguePage = (league :any) => {
   const curr = `${league.id};${league.name}`
   const path = `/leagues/${league.id}`
   const jsonStr = localStorage.getItem('league_recents')
@@ -31,15 +31,15 @@ const saveToLocalStorageThenGoToLeaguePage = (league) => {
   window.location.href = path
 }
 
-export default function LeagueSearch({ leagues }) {
+export default function LeagueSearch({ leagues } : { leagues : any}) {
   const [results, setResults] = useState<any[]>([])
-  const search = (val) => {
+  const search = (val :any) => {
     if (val.length < 2) {
       setResults([])
       return
     }
     const found = leagues.filter(
-      (league) => league.name.toLowerCase().includes(val.toLowerCase())
+      (league :any) => league.name.toLowerCase().includes(val.toLowerCase())
     )
     console.log(found)
     setResults(found)

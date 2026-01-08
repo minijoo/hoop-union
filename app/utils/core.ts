@@ -1,4 +1,4 @@
-const preprocessGamesForSummary = (games) => {
+const preprocessGamesForSummary = (games : any[]) => {
   games.forEach((game :any) => {
     game.leaders = [{},{}]
     game.leaders[0].pts = [0]
