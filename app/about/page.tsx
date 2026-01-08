@@ -16,7 +16,7 @@ export default function Home() {
             ABOUT
           </h1>
           <p className="max-w-md text-lg leading-8 text-zinc-600">
-            <b>Hoop Union</b> is a place that aggregates data from Francis and makes it publicly accessible on the internet.
+            <b>Hoop Union</b> is a place that aggregates data from Francis and makes it publicly accessible. 
           </p>
         </div>
         <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
