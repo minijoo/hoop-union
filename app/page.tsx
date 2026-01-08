@@ -250,7 +250,7 @@ export default async function Home() {
   console.log(games)
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans">
-      <main className="flex min-h-screen w-full max-w-4xl flex-col items-center justify-start px-3 md:px-16 bg-white sm:items-start">
+      <main className="flex min-h-screen w-full max-w-4xl flex-col items-center justify-start px-3 md:px-16 bg-white sm:items-start pb-5">
         <div className="w-full my-5 py-10 px-5 rounded-lg bg-blue-200 flex flex-col justify-center gap-2">
           <div className="font-semibold text-2xl">
             The best place for Francis stats and data

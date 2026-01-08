@@ -9,26 +9,12 @@ const BASE_URL = process.env.NODE_ENV === 'production' ?
   "https://demo.jordys.site" : "http://localhost:8000"
 
 const BoxScore = ({ gameData }: {gameData: any}) => {
-  // If no game data is provided, show sample data
-  const defaultGameData = {
-    away: "Celtics",
-    home: "Lakers",
-    period_scores: [[-1, -1], [-1, -1], [-1, -1], [8, 3]],
-    title: "Celtics @ Lakers",
-    lines: [
-      { side: 1, num: 9, pts: 0, fga: 0, fgm: 0, thm: 0, tha: 0, ftm: 0, fta: 0, oreb: 0, reb: 0, blk: 0, ast: 2, tov: 0, stl: 0, fls: 0 },
-      { side: 1, num: 34, pts: 5, fga: 2, fgm: 2, thm: 1, tha: 1, ftm: 0, fta: 0, oreb: 0, reb: 0, blk: 0, ast: 0, tov: 0, stl: 0, fls: 0 },
-      { side: 1, num: 5, pts: 0, fga: 0, fgm: 0, thm: 0, tha: 0, ftm: 0, fta: 0, oreb: 0, reb: 1, blk: 0, ast: 0, tov: 0, stl: 1, fls: 0 },
-      { side: 1, num: 24, pts: 3, fga: 1, fgm: 1, thm: 1, tha: 1, ftm: 0, fta: 0, oreb: 0, reb: 0, blk: 0, ast: 0, tov: 0, stl: 0, fls: 0 },
-      { side: 1, num: 2, pts: 0, fga: 0, fgm: 0, thm: 0, tha: 0, ftm: 0, fta: 0, oreb: 0, reb: 1, blk: 0, ast: 0, tov: 0, stl: 0, fls: 0 },
-      { side: 1, num: 12, pts: 0, fga: 0, fgm: 0, thm: 0, tha: 0, ftm: 0, fta: 0, oreb: 0, reb: 0, blk: 0, ast: 1, tov: 0, stl: 0, fls: 0 },
-      { side: 0, num: 24, pts: 3, fga: 1, fgm: 1, thm: 1, tha: 1, ftm: 0, fta: 0, oreb: 0, reb: 0, blk: 0, ast: 0, tov: 0, stl: 0, fls: 0 },
-      { side: 0, num: 34, pts: 0, fga: 0, fgm: 0, thm: 0, tha: 0, ftm: 0, fta: 0, oreb: 0, reb: 0, blk: 0, ast: 1, tov: 0, stl: 0, fls: 0 },
-      { side: 0, num: 7, pts: 0, fga: 0, fgm: 0, thm: 0, tha: 0, ftm: 0, fta: 0, oreb: 0, reb: 0, blk: 0, ast: 1, tov: 0, stl: 0, fls: 0 }
-    ]
-  };
+  const game = gameData;
 
-  const game = gameData || defaultGameData;
+  const publishedDateText =
+    (new Date(game.submitted_on)).toLocaleDateString(
+      'en-US', { month: 'long', day: 'numeric', year: 'numeric' }
+    );
 
   // Separate players by team (side: 0 = home, 1 = away)
   const homePlayers = game.lines.filter((line: any) => line.side === 0);
@@ -113,7 +99,7 @@ const BoxScore = ({ gameData }: {gameData: any}) => {
   const periods = processPeriodScores();
 
   return (
-    <div className="p-2 md:p-5 bg-gray-100 min-h-screen w-full">
+    <div className="p-2 md:p-5 bg-gray-100 min-h-screen w-full pb-5">
       <style>{`
         td:first-child {
           position: sticky;
@@ -137,10 +123,18 @@ const BoxScore = ({ gameData }: {gameData: any}) => {
         }
       `}</style>
 
-      <div className="text-center mb-5 md:mb-8">
-        <h1 className="text-lg md:text-2xl font-bold mb-1 md:mb-2">
-          {game.title || `${game.away} @ ${game.home}`}
-        </h1>
+      <div className="flex justify-between px-2 md:px-5">
+        <div className="flex flex-col">
+          <h1 className="text-lg md:text-2xl font-bold">
+            {game.title || `${game.away} @ ${game.home}`}
+          </h1>
+          <h1 className="text-lg md:text-2xl italic">
+            {game.league}
+          </h1>
+          <h2 className="text-md md:text-lg mb-1 md:mb-2">
+            {publishedDateText}
+          </h2>
+        </div>
         {/* Period Scores Table */}
         <div className="flex justify-center mb-4">
           <table className="border-collapse border border-gray-300 text-xs md:text-sm">
