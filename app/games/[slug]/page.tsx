@@ -310,7 +310,10 @@ export default async function Game({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const res = await fetch(`${BASE_URL}/games/public/${slug}`)
+  const res = await fetch(
+    `${BASE_URL}/games/public/${slug}`,
+    { cache: 'no-store' }
+  )
   const game = await res.json()
   console.log(game)
 
