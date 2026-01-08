@@ -35,7 +35,7 @@ export default function RootLayout({
             flex flex-row justify-between items-center
             text-md text-foreground px-6"
           >
-            <div>A Francis company</div>
+            <div>A Francis service</div>
             <div>Copyright Francis 2026</div>
           </div>
         </div>

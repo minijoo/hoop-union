@@ -73,8 +73,7 @@ export default function BouncingBasketball({
     <div 
       ref={containerRef}
       onClick={handleClick}
-      className="relative w-full bg-gradient-to-b from-blue-200 to-blue-100 cursor-pointer rounded-md"
-      style={{ aspectRatio: '16/9' }}
+      className="relative w-full h-full bg-gradient-to-b from-blue-200 to-blue-100 cursor-pointer rounded-md"
     >
       {children}
       {/* Floor line 
