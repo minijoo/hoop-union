@@ -48,12 +48,16 @@ export default function GameSummary({
             <div className="flex flex-col gap-1">
               <span className="text-xs">
                 <span className="font-semibold">{league}</span>
-                <span className="pl-2 text-xxs text-blue-200">{submittedOnText}</span>
               </span>
-              <span className="text-sm font-semibold">{title}</span>
+              <span className="text-xs text-blue-200">{submittedOnText}</span>
+              {false // to be removed
+                ? <span className="text-sm font-semibold">{title}</span>
+                : <></>
+              }
             </div>
             <div className="flex flex-col items-end ml-3">
               <div className="flex items-center gap-2 w-full">
+                <span className="w-[14.5px]"></span>
                 <span className="text-lg font-semibold flex-1 pr-2">{away}</span>
                 <span className={`text-lg ${awayWon ? 'font-bold' : 'font-normal'}`}>
                   {awayFinalScore}
@@ -71,6 +75,7 @@ export default function GameSummary({
                 )}
               </div>
               <div className="flex items-center gap-2 w-full">
+                <span className="flex-none">@</span>
                 <span className="text-lg font-semibold flex-1 pr-2">{home}</span>
                 <span className={`text-lg ${homeWon ? 'font-bold' : 'font-normal'}`}>
                   {homeFinalScore}
