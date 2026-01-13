@@ -203,7 +203,7 @@ const BoxScore = ({ gameData }: {gameData: any}) => {
             <tbody>
               {awayPlayers.map((player :any, idx :number) => (
                 <tr key={idx} className="border-b border-gray-200">
-                  <td className="p-1 md:p-3 text-center font-bold whitespace-nowrap">#{player.num}</td>
+                  <td className="p-1 md:p-3 text-center font-bold whitespace-nowrap">{player.name ? player.name : `#${player.num}`}</td>
                   <td className="p-1 md:p-3 text-center">{player.pts}</td>
                   <td className="p-1 md:p-3 text-center">{player.fgm}-{player.fga}</td>
                   <td className="p-1 md:p-3 text-center">{player.thm}-{player.tha}</td>
@@ -262,7 +262,7 @@ const BoxScore = ({ gameData }: {gameData: any}) => {
             <tbody>
               {homePlayers.map((player :any, idx :number) => (
                 <tr key={idx} className="border-b border-gray-200">
-                  <td className="p-1 md:p-3 text-center font-bold whitespace-nowrap">#{player.num}</td>
+                  <td className="p-1 md:p-3 text-center font-bold whitespace-nowrap">{player.name ? player.name : `#${player.num}`}</td>
                   <td className="p-1 md:p-3 text-center">{player.pts}</td>
                   <td className="p-1 md:p-3 text-center">{player.fgm}-{player.fga}</td>
                   <td className="p-1 md:p-3 text-center">{player.thm}-{player.tha}</td>

@@ -43,7 +43,7 @@ export default async function Home() {
                 Hoop Union aggregates data from Francis and makes it publicly accessible.
               </div>
               <div className="flex flex-row gap-3 text-md">
-                <a href="http://hoopfrontend-kohl.vercel.app/landing"
+                <a href="/landing"
                   className="rounded-lg bg-white flex flex-wrap place-content-center px-3 py-2">
                   About <span className="italic pl-1 text-[#fea903]">Francis</span>
                 </a>

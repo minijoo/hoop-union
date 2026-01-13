@@ -1,34 +1,33 @@
 export default function GameSummary({
   league, title, submittedOn, away, home, periodScores, leaders, baseGameId
 } :any) {
-  const PLAYER_LABEL = 'Player'
   const awayFinalScore = periodScores[3][0];
   const homeFinalScore = periodScores[3][1];
   const awayWon = awayFinalScore > homeFinalScore;
   const homeWon = homeFinalScore > awayFinalScore;
 
   const ptsLeaderHome = leaders[0].pts[0] > 0 ? leaders[0].pts[0] : '--'
-  const ptsLeaderHomeName = leaders[0].pts[0] > 0 ? `${PLAYER_LABEL} #${leaders[0].pts[1]}` : '--'
+  const ptsLeaderHomeName = leaders[0].pts[0] > 0 ? `${leaders[0].pts[1]}` : '--'
   const ptsLeaderAway =  leaders[1].pts[0] > 0 ? leaders[1].pts[0] : '--'
-  const ptsLeaderAwayName =  leaders[1].pts[0] > 0 ? `${PLAYER_LABEL} #${leaders[1].pts[1]}` : '--'
+  const ptsLeaderAwayName =  leaders[1].pts[0] > 0 ? `${leaders[1].pts[1]}` : '--'
   const rebLeaderHome = leaders[0].reb[0] > 0 ? leaders[0].reb[0] : '--'
-  const rebLeaderHomeName = leaders[0].reb[0] > 0 ? `${PLAYER_LABEL} #${leaders[0].reb[1]}` : '--'
+  const rebLeaderHomeName = leaders[0].reb[0] > 0 ? `${leaders[0].reb[1]}` : '--'
   const rebLeaderAway =  leaders[1].reb[0] > 0 ? leaders[1].reb[0] : '--'
-  const rebLeaderAwayName =  leaders[1].reb[0] > 0 ? `${PLAYER_LABEL} #${leaders[1].reb[1]}` : '--'
+  const rebLeaderAwayName =  leaders[1].reb[0] > 0 ? `${leaders[1].reb[1]}` : '--'
   const astLeaderHome = leaders[0].ast[0] > 0 ? leaders[0].ast[0] : '--'
-  const astLeaderHomeName = leaders[0].ast[0] > 0 ? `${PLAYER_LABEL} #${leaders[0].ast[1]}` : '--'
+  const astLeaderHomeName = leaders[0].ast[0] > 0 ? `${leaders[0].ast[1]}` : '--'
   const astLeaderAway =  leaders[1].ast[0] > 0 ? leaders[1].ast[0] : '--'
-  const astLeaderAwayName =  leaders[1].ast[0] > 0 ? `${PLAYER_LABEL} #${leaders[1].ast[1]}` : '--'
+  const astLeaderAwayName =  leaders[1].ast[0] > 0 ? `${leaders[1].ast[1]}` : '--'
   const defStatsHome = []
   leaders[0].def[0] > 0 && defStatsHome.push(leaders[0].def[0] + ' stl')
   leaders[0].def[1] > 0 && defStatsHome.push(leaders[0].def[1] + ' blk')
   const defLeaderHome = defStatsHome.length ? defStatsHome.join(', ') : '--'
-  const defLeaderHomeName = defStatsHome.length ? `${PLAYER_LABEL} #${leaders[0].def[2]}` : '--'
+  const defLeaderHomeName = defStatsHome.length ? `${leaders[0].def[2]}` : '--'
   const defStatsAway = []
   leaders[1].def[0] > 0 && defStatsAway.push(leaders[1].def[0] + ' stl')
   leaders[1].def[1] > 0 && defStatsAway.push(leaders[1].def[1] + ' blk')
   const defLeaderAway = defStatsAway.length ? defStatsAway.join(', ') : '--'
-  const defLeaderAwayName = defStatsAway.length ? `${PLAYER_LABEL} #${leaders[1].def[2]}` : '--'
+  const defLeaderAwayName = defStatsAway.length ? `${leaders[1].def[2]}` : '--'
 
   const submittedOnText = (new Date(submittedOn)).toLocaleDateString(
     'en-US', { month: 'short', day: 'numeric', year: 'numeric' });

@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 export default function Nav({}) {
   const pathname = usePathname()
   return <div className="flex justify-center bg-zinc-50">
-          <div className="w-full max-w-4xl h-16 border-b-1 bg-white
+          <div className="w-full max-w-4xl h-16 bg-blue-200 border-b-2
             flex flex-row justify-start px-6 gap-4 items-center
             text-2xl text-foreground"
           >
