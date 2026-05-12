@@ -9,7 +9,7 @@ export default function BouncingBasketball({
   const [ballPos, setBallPos] = useState({ x: 200, y: 50 });
   const [velocity, setVelocity] = useState({ vx: 0, vy: 0 });
   const [isDragging, setIsDragging] = useState(false);
-  const animationRef = useRef(null);
+  const animationRef = useRef<number>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const BALL_RADIUS = 20;
