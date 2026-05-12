@@ -5,8 +5,9 @@ import LeagueSearch from "./components/leagueSearch";
 import GameSummary from "./components/gameSummary";
 import { preprocessGamesForSummary } from "./utils/core";
 
-const BASE_URL = process.env.NODE_ENV === 'production' ? 
-  "https://demo.jordys.site" : "http://localhost:8000"
+const BASE_URL = process.env.APP_ENV === 'production' ?
+  "https://francis.jordys.site" : process.env.APP_ENV === 'staging' ?
+    "https://demo.jordys.site" : "http://localhost:8000"
 
 export default async function Home() {
   const leagues = []
@@ -28,7 +29,7 @@ export default async function Home() {
   Array.isArray(respGames) && games.push(...respGames.reverse())
 
   preprocessGamesForSummary(games)
-  
+
   console.log(games)
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans">
@@ -49,20 +50,20 @@ export default async function Home() {
                 </a>
                 <a href=""
                   className="rounded-lg bg-white flex flex-wrap place-content-center px-3 py-2 items-center">
-                  <span className="text-lg pr-1.5"><FaDiscord /></span> Join Discord 
+                  <span className="text-lg pr-1.5"><FaDiscord /></span> Join Discord
                 </a>
               </div>
             </div>
           </BouncingBasketball>
         </div>
         <div className="w-full pb-3">
-          <LeagueSearch leagues={leagues}/>
+          <LeagueSearch leagues={leagues} />
         </div>
         <div className="flex flex-col gap-1 w-full pb-1 rounded-md">
           <div className="font-semibold text-xl">
             Recent Games Worldwide
           </div>
-          {games.map((game :any) => (
+          {games.map((game: any) => (
             <GameSummary key={game.base_game_id}
               league={game.league}
               title={game.title}

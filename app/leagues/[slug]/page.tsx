@@ -1,8 +1,9 @@
 import GameSummary from "../../components/gameSummary";
 import { preprocessGamesForSummary } from "../../utils/core";
 
-const BASE_URL = process.env.NODE_ENV === 'production' ? 
-  "https://demo.jordys.site" : "http://localhost:8000"
+const BASE_URL = process.env.APP_ENV === 'production' ?
+  "https://francis.jordys.site" : process.env.APP_ENV === 'production' ?
+    "https://demo.jordys.site" : "http://localhost:8000"
 
 export default async function LeaguePage({
   params,
@@ -16,7 +17,7 @@ export default async function LeaguePage({
     { cache: 'no-store' }
   )
   const league = await resp0.json()
-  
+
   const games = []
 
   const resp = await fetch(
@@ -27,7 +28,7 @@ export default async function LeaguePage({
   Array.isArray(respGames) && games.push(...respGames.reverse())
 
   preprocessGamesForSummary(games)
- 
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans">
       <main className="flex min-h-screen w-full max-w-4xl flex-col items-center justify-start px-3 md:px-16 bg-white sm:items-start pb-5 pt-5">
@@ -38,14 +39,14 @@ export default async function LeaguePage({
             <span>{league.location ? `— ${league.location}` : ""}</span>
           </div>
           <span className="text-lg">Latest Games</span>
-          {games.length 
+          {games.length
             ? <></>
             : <div>
               <i>No games found in this league. Go back to&nbsp;
                 <a href="/" className="underline">home</a>.</i>
             </div>
           }
-          {games.map((game :any) => (
+          {games.map((game: any) => (
             <GameSummary key={game.base_game_id}
               league={game.league}
               title={game.title}
@@ -61,9 +62,4 @@ export default async function LeaguePage({
       </main>
     </div>
   );
-  return (
-    <div>
-      <h1>{slug}</h1>
-    </div>
-  )
 }

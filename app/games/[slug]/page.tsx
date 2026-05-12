@@ -5,10 +5,11 @@ export const metadata: Metadata = {
   description: "",
 };
 
-const BASE_URL = process.env.NODE_ENV === 'production' ? 
-  "https://demo.jordys.site" : "http://localhost:8000"
+const BASE_URL = process.env.APP_ENV === 'production' ?
+  "https://francis.jordys.site" : process.env.APP_ENV === 'staging' ?
+    "https://demo.jordys.site" : "http://localhost:8000"
 
-const BoxScore = ({ gameData }: {gameData: any}) => {
+const BoxScore = ({ gameData }: { gameData: any }) => {
   const game = gameData;
 
   const publishedDateText =
@@ -22,7 +23,7 @@ const BoxScore = ({ gameData }: {gameData: any}) => {
 
   // Calculate totals for a team
   const calculateTotals = (players: any) => {
-    return players.reduce((totals :any, player :any) => ({
+    return players.reduce((totals: any, player: any) => ({
       pts: totals.pts + player.pts,
       fgm: totals.fgm + player.fgm,
       fga: totals.fga + player.fga,
@@ -57,18 +58,18 @@ const BoxScore = ({ gameData }: {gameData: any}) => {
     const periods = [];
     let periodNumber = 1;
     let prevAwayPts = 0, prevHomePts = 0;
-    
+
     for (let i = 0; i < game.period_scores.length; i++) {
       const [awayPts, homePts] = game.period_scores[i];
-      
+
       // Skip if both are -1
       if (awayPts === -1 && homePts === -1) {
         continue;
       }
-      
+
       // Calculate points for this period
       let awayPeriodPts, homePeriodPts;
-      
+
       if (i === 0) {
         // First period, use the values directly
         awayPeriodPts = awayPts;
@@ -83,16 +84,16 @@ const BoxScore = ({ gameData }: {gameData: any}) => {
         prevAwayPts = awayPts;
         prevHomePts = homePts;
       }
-      
+
       periods.push({
         label: `P${periodNumber}`,
         away: awayPeriodPts,
         home: homePeriodPts
       });
-      
+
       periodNumber++;
     }
-    
+
     return periods;
   };
 
@@ -201,7 +202,7 @@ const BoxScore = ({ gameData }: {gameData: any}) => {
               </tr>
             </thead>
             <tbody>
-              {awayPlayers.map((player :any, idx :number) => (
+              {awayPlayers.map((player: any, idx: number) => (
                 <tr key={idx} className="border-b border-gray-200">
                   <td className="p-1 md:p-3 text-center font-bold whitespace-nowrap">{player.name ? player.name : `#${player.num}`}</td>
                   <td className="p-1 md:p-3 text-center">{player.pts}</td>
@@ -260,7 +261,7 @@ const BoxScore = ({ gameData }: {gameData: any}) => {
               </tr>
             </thead>
             <tbody>
-              {homePlayers.map((player :any, idx :number) => (
+              {homePlayers.map((player: any, idx: number) => (
                 <tr key={idx} className="border-b border-gray-200">
                   <td className="p-1 md:p-3 text-center font-bold whitespace-nowrap">{player.name ? player.name : `#${player.num}`}</td>
                   <td className="p-1 md:p-3 text-center">{player.pts}</td>
@@ -305,7 +306,7 @@ export default async function Game({
 }) {
   const { slug } = await params
   const res = await fetch(
-    `${BASE_URL}/games/public/${slug}`,
+    `${BASE_URL}/games/public/id/${slug}`,
     { cache: 'no-store' }
   )
   const game = await res.json()
