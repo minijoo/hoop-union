@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, type MouseEventHandler, type TouchEventHandler } from 'react';
 
 export default function BouncingBasketball({
   children,
@@ -63,7 +63,7 @@ export default function BouncingBasketball({
     };
   }, [velocity, isDragging]);
 
-  const handleMouseDown = (e: MouseEvent) => {
+  const handleMouseDown: MouseEventHandler<HTMLDivElement> = (e) => {
     if (containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -81,7 +81,7 @@ export default function BouncingBasketball({
     }
   };
 
-  const handleMouseMove = (e: MouseEvent) => {
+  const handleMouseMove: MouseEventHandler<HTMLDivElement> = (e) => {
     if (!isDragging) return;
 
     if (containerRef.current) {
@@ -93,14 +93,14 @@ export default function BouncingBasketball({
     }
   };
 
-  const handleMouseUp = () => {
+  const handleMouseUp: MouseEventHandler<HTMLDivElement> = () => {
     if (isDragging) {
       setIsDragging(false);
       setVelocity({ vx: 0, vy: 0 });
     }
   };
 
-  const handleTouchStart = (e: TouchEvent) => {
+  const handleTouchStart: TouchEventHandler<HTMLDivElement> = (e) => {
     e.preventDefault();
     const touch = e.touches[0];
     if (containerRef.current) {
@@ -119,7 +119,7 @@ export default function BouncingBasketball({
     }
   };
 
-  const handleTouchMove = (e: TouchEvent) => {
+  const handleTouchMove: TouchEventHandler<HTMLDivElement> = (e) => {
     if (!isDragging) return;
     e.preventDefault();
 
