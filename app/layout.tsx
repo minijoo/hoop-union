@@ -31,7 +31,7 @@ export default function RootLayout({
         <Nav />
         {children}
         <div className="flex justify-center bg-zinc-50">
-          <div className="w-full max-w-4xl h-16 border-t-1 bg-white
+          <div className="w-full max-w-4xl h-16 border-t bg-white
             flex flex-row justify-between items-center
             text-md text-foreground px-6"
           >

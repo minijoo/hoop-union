@@ -101,7 +101,6 @@ export default function BouncingBasketball({
   };
 
   const handleTouchStart: TouchEventHandler<HTMLDivElement> = (e) => {
-    e.preventDefault();
     const touch = e.touches[0];
     if (containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
@@ -121,7 +120,6 @@ export default function BouncingBasketball({
 
   const handleTouchMove: TouchEventHandler<HTMLDivElement> = (e) => {
     if (!isDragging) return;
-    e.preventDefault();
 
     const touch = e.touches[0];
     if (containerRef.current) {
@@ -150,7 +148,7 @@ export default function BouncingBasketball({
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      className="relative w-full h-full bg-linear-to-b from-blue-300 to-blue-200 cursor-pointer rounded-md"
+      className="relative w-full h-full bg-linear-to-b from-blue-300 to-blue-200 cursor-pointer rounded-md touch-none"
     >
       {children}
       <div

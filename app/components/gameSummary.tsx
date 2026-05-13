@@ -1,6 +1,6 @@
 export default function GameSummary({
   league, title, submittedOn, away, home, periodScores, leaders, baseGameId
-} :any) {
+}: any) {
   const awayFinalScore = periodScores[3][0];
   const homeFinalScore = periodScores[3][1];
   const awayWon = awayFinalScore > homeFinalScore;
@@ -8,16 +8,16 @@ export default function GameSummary({
 
   const ptsLeaderHome = leaders[0].pts[0] > 0 ? leaders[0].pts[0] : '--'
   const ptsLeaderHomeName = leaders[0].pts[0] > 0 ? `${leaders[0].pts[1]}` : '--'
-  const ptsLeaderAway =  leaders[1].pts[0] > 0 ? leaders[1].pts[0] : '--'
-  const ptsLeaderAwayName =  leaders[1].pts[0] > 0 ? `${leaders[1].pts[1]}` : '--'
+  const ptsLeaderAway = leaders[1].pts[0] > 0 ? leaders[1].pts[0] : '--'
+  const ptsLeaderAwayName = leaders[1].pts[0] > 0 ? `${leaders[1].pts[1]}` : '--'
   const rebLeaderHome = leaders[0].reb[0] > 0 ? leaders[0].reb[0] : '--'
   const rebLeaderHomeName = leaders[0].reb[0] > 0 ? `${leaders[0].reb[1]}` : '--'
-  const rebLeaderAway =  leaders[1].reb[0] > 0 ? leaders[1].reb[0] : '--'
-  const rebLeaderAwayName =  leaders[1].reb[0] > 0 ? `${leaders[1].reb[1]}` : '--'
+  const rebLeaderAway = leaders[1].reb[0] > 0 ? leaders[1].reb[0] : '--'
+  const rebLeaderAwayName = leaders[1].reb[0] > 0 ? `${leaders[1].reb[1]}` : '--'
   const astLeaderHome = leaders[0].ast[0] > 0 ? leaders[0].ast[0] : '--'
   const astLeaderHomeName = leaders[0].ast[0] > 0 ? `${leaders[0].ast[1]}` : '--'
-  const astLeaderAway =  leaders[1].ast[0] > 0 ? leaders[1].ast[0] : '--'
-  const astLeaderAwayName =  leaders[1].ast[0] > 0 ? `${leaders[1].ast[1]}` : '--'
+  const astLeaderAway = leaders[1].ast[0] > 0 ? leaders[1].ast[0] : '--'
+  const astLeaderAwayName = leaders[1].ast[0] > 0 ? `${leaders[1].ast[1]}` : '--'
   const defStatsHome = []
   leaders[0].def[0] > 0 && defStatsHome.push(leaders[0].def[0] + ' stl')
   leaders[0].def[1] > 0 && defStatsHome.push(leaders[0].def[1] + ' blk')
@@ -32,7 +32,7 @@ export default function GameSummary({
   const submittedOnText = (new Date(submittedOn)).toLocaleDateString(
     'en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   return (
-    <a href={`/games/${baseGameId}`} className="hover:cursor-pointer">
+    <a href={`/games/${baseGameId}`} className="click-icon">
       <div className="w-full max-w-4xl mx-auto py-1 px-2 md:px-3">
         <div className="border border-blue-900 rounded-lg overflow-hidden shadow-sm">
           {/* Header - Desktop */}
@@ -62,7 +62,7 @@ export default function GameSummary({
                   {awayFinalScore}
                 </span>
                 {awayWon && (
-                  <div 
+                  <div
                     style={{
                       width: 0,
                       height: 0,
@@ -80,7 +80,7 @@ export default function GameSummary({
                   {homeFinalScore}
                 </span>
                 {homeWon && (
-                  <div 
+                  <div
                     style={{
                       width: 0,
                       height: 0,
@@ -96,7 +96,7 @@ export default function GameSummary({
 
           {/* Leaders Divider - Mobile */}
           <div className="md:hidden flex items-center justify-center bg-blue-100 border-b border-gray-200">
-            <div 
+            <div
               className="text-xs font-semibold text-gray-600 uppercase tracking-wider"
             >
               Leaders
@@ -114,7 +114,7 @@ export default function GameSummary({
                     {awayFinalScore}
                   </span>
                   {awayWon && (
-                    <div 
+                    <div
                       style={{
                         width: 0,
                         height: 0,
@@ -134,7 +134,7 @@ export default function GameSummary({
                     {homeFinalScore}
                   </span>
                   {homeWon && (
-                    <div 
+                    <div
                       style={{
                         width: 0,
                         height: 0,
@@ -150,9 +150,9 @@ export default function GameSummary({
 
             {/* Leaders Divider - Desktop*/}
             <div className="hidden md:flex items-center justify-center bg-blue-100 border-r border-gray-200" style={{ width: '24px' }}>
-              <div 
+              <div
                 className="text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                style={{ 
+                style={{
                   writingMode: 'vertical-rl',
                   transform: 'rotate(180deg)'
                 }}
@@ -162,41 +162,41 @@ export default function GameSummary({
             </div>
 
             {/* Stats Categories */}
-            <div className="text-sm md:text-lg flex flex-1 divide-x divide-gray-200 flex-wrap">
-              {/* Assists */}
-              <div className="flex-1 flex flex-col justify-center items-center py-1">
-                <div className="text-gray-800">{ptsLeaderAwayName}</div>
+            <div className="text-sm md:text-lg w-full grid grid-cols-12 divide-x divide-gray-200">
+              {/* Points */}
+              <div className="flex-1 flex flex-col justify-center items-center py-1 px-2 col-span-3">
+                <div className="text-gray-800 text-center whitespace-nowrap w-full overflow-hidden text-ellipsis">{ptsLeaderAwayName}</div>
                 <div className="font-bold text-gray-800">{ptsLeaderAway}</div>
                 <div className="text-xs text-gray-500 uppercase font-semibold">PTS</div>
                 <div className="font-bold text-gray-800">{ptsLeaderHome}</div>
-                <div className="text-gray-800">{ptsLeaderHomeName}</div>
+                <div className="text-gray-800 text-center whitespace-nowrap w-full overflow-hidden text-ellipsis">{ptsLeaderHomeName}</div>
               </div>
 
               {/* REB */}
-              <div className="md:text-lg flex-1 flex flex-col justify-center items-center py-3">
-                <div className="text-gray-800">{rebLeaderAwayName}</div>
+              <div className="flex-1 flex flex-col justify-center items-center py-1 px-2 col-span-3">
+                <div className="text-gray-800 text-center whitespace-nowrap w-full overflow-hidden text-ellipsis">{rebLeaderAwayName}</div>
                 <div className="font-bold text-gray-800">{rebLeaderAway}</div>
                 <div className="text-xs text-gray-500 uppercase font-semibold">REB</div>
                 <div className="font-bold text-gray-800">{rebLeaderHome}</div>
-                <div className="text-gray-800">{rebLeaderHomeName}</div>
+                <div className="text-gray-800 text-center whitespace-nowrap w-full overflow-hidden text-ellipsis">{rebLeaderHomeName}</div>
               </div>
 
               {/* AST */}
-              <div className="md:text-lg flex-1 flex flex-col justify-center items-center py-3">
-                <div className="text-gray-800">{astLeaderAwayName}</div>
+              <div className="md:text-lg flex-1 flex flex-col justify-center items-center py-1 px-2 col-span-3">
+                <div className="text-gray-800 text-center whitespace-nowrap w-full overflow-hidden text-ellipsis">{astLeaderAwayName}</div>
                 <div className="font-bold text-gray-800">{astLeaderAway}</div>
                 <div className="text-xs text-gray-500 uppercase font-semibold">AST</div>
                 <div className="font-bold text-gray-800">{astLeaderHome}</div>
-                <div className="text-gray-800">{astLeaderHomeName}</div>
+                <div className="text-gray-800 text-center whitespace-nowrap w-full overflow-hidden text-ellipsis">{astLeaderHomeName}</div>
               </div>
 
               {/* DEF */}
-              <div className="md:text-lg flex-1 flex flex-col justify-center items-center py-3">
-                <div className="text-gray-800">{defLeaderAwayName}</div>
+              <div className="md:text-lg flex-1 flex flex-col justify-center items-center py-1 px-2 col-span-3">
+                <div className="text-gray-800 text-center whitespace-nowrap w-full overflow-hidden text-ellipsis">{defLeaderAwayName}</div>
                 <div className="font-bold text-gray-800">{defLeaderAway}</div>
                 <div className="text-xs text-gray-500 uppercase font-semibold">DEF</div>
                 <div className="font-bold text-gray-800">{defLeaderHome}</div>
-                <div className="text-gray-800">{defLeaderHomeName}</div>
+                <div className="text-gray-800 text-center whitespace-nowrap w-full overflow-hidden text-ellipsis">{defLeaderHomeName}</div>
               </div>
             </div>
           </div>

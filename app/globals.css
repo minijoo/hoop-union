@@ -24,3 +24,7 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.click-icon {
+  @apply hover:cursor-pointer active:scale-90 transition-transform duration-150 ease-out;
+}

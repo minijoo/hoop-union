@@ -9,6 +9,10 @@ const BASE_URL = process.env.APP_ENV === 'production' ?
   "https://francis.jordys.site" : process.env.APP_ENV === 'staging' ?
     "https://demo.jordys.site" : "http://localhost:8000"
 
+const FRANCIS_URL = process.env.APP_ENV === 'production' ?
+  "https://hoopfrontend-kohl.vercel.app" : process.env.APP_ENV === 'staging' ?
+    "https://hoopfrontend-git-staging-minijoos-projects.vercel.app" : "http://localhost:5174"
+
 export default async function Home() {
   const leagues = []
   const games = []
@@ -30,7 +34,6 @@ export default async function Home() {
 
   preprocessGamesForSummary(games)
 
-  console.log(games)
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans">
       <main className="flex min-h-screen w-full max-w-4xl flex-col items-center justify-start px-3 md:px-16 bg-white sm:items-start pb-5 pt-5">
@@ -44,11 +47,11 @@ export default async function Home() {
                 Hoop Union aggregates data from Francis and makes it publicly accessible.
               </div>
               <div className="flex flex-row gap-3 text-md">
-                <a href="/landing"
+                <a href={`${FRANCIS_URL}/landing`}
                   className="rounded-lg bg-white flex flex-wrap place-content-center px-3 py-2">
                   About <span className="italic pl-1 text-[#fea903]">Francis</span>
                 </a>
-                <a href=""
+                <a href="https://discord.gg/AdXUS7PPr"
                   className="rounded-lg bg-white flex flex-wrap place-content-center px-3 py-2 items-center">
                   <span className="text-lg pr-1.5"><FaDiscord /></span> Join Discord
                 </a>
