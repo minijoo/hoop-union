@@ -18,8 +18,8 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
     );
 
   // Separate players by team (side: 0 = home, 1 = away)
-  const homePlayers = game.lines.filter((line: any) => line.side === 0);
-  const awayPlayers = game.lines.filter((line: any) => line.side === 1);
+  const homePlayers = game.lines.filter((line: any) => line.side === 0).sort((a: any, b: any) => b.pts - a.pts);
+  const awayPlayers = game.lines.filter((line: any) => line.side === 1).sort((a: any, b: any) => b.pts - a.pts);
 
   // Calculate totals for a team
   const calculateTotals = (players: any) => {
@@ -164,10 +164,12 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
           <table className="w-full border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-blue-900 text-white">
-                <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap sticky left-0 bg-blue-900">Player</th>
-                <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">FGM-FGA</th>
-                <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">3PM-3PA</th>
-                <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">FTM-FTA</th>
+                <th className="py-1 px-2 md:p-3 text-left text-xs whitespace-nowrap sticky left-0 bg-blue-900">
+                  Player
+                </th>
+                <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">FGs</th>
+                <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">3PTs</th>
+                <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">FTs</th>
                 <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">OREB</th>
                 <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">REB</th>
                 <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">AST</th>
@@ -175,13 +177,18 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
                 <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">BLK</th>
                 <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">TOV</th>
                 <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">PF</th>
-                <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap sticky right-0 bg-blue-900">PTS</th>
+                <th className="py-1 px-2 md:p-3 text-right text-xs whitespace-nowrap sticky right-0 bg-blue-900">
+                  PTS
+                </th>
               </tr>
             </thead>
             <tbody>
               {awayPlayers.map((player: any, idx: number) => (
                 <tr key={idx} className="border-b border-gray-200">
-                  <td className="p-1 md:p-3 text-center font-bold whitespace-nowrap sticky left-0 bg-white max-w-24 md:max-w-30 overflow-hidden text-ellipsis" title={player.name ? player.name : `#${player.num}`}>{player.name ? player.name : `#${player.num}`}</td>
+                  <td className="py-1 px-1.5 md:p-3 text-left font-bold whitespace-nowrap sticky left-0 bg-gray-100 max-w-24 md:max-w-30 overflow-hidden text-ellipsis"
+                    title={player.name ? player.name : `#${player.num}`}>
+                    {player.name ? player.name : `#${player.num}`}
+                  </td>
                   <td className="p-1 md:p-3 text-center">{player.fgm}-{player.fga}</td>
                   <td className="p-1 md:p-3 text-center">{player.thm}-{player.tha}</td>
                   <td className="p-1 md:p-3 text-center">{player.ftm}-{player.fta}</td>
@@ -192,7 +199,9 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
                   <td className="p-1 md:p-3 text-center">{player.blk}</td>
                   <td className="p-1 md:p-3 text-center">{player.tov}</td>
                   <td className="p-1 md:p-3 text-center">{player.fls}</td>
-                  <td className="p-1 md:p-3 text-center font-bold sticky right-0 bg-white">{player.pts}</td>
+                  <td className="py-1 px-2 md:p-3 text-right font-bold sticky right-0 bg-gray-100">
+                    {player.pts}
+                  </td>
                 </tr>
               ))}
               <tr className="bg-gray-100 border-t-2 border-gray-800 font-bold">
@@ -207,7 +216,9 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
                 <td className="p-1 md:p-3 text-center">{awayTotals.blk}</td>
                 <td className="p-1 md:p-3 text-center">{awayTotals.tov}</td>
                 <td className="p-1 md:p-3 text-center">{awayTotals.fls}</td>
-                <td className="p-1 md:p-3 text-center sticky right-0 bg-gray-100">{awayTotals.pts}</td>
+                <td className="py-1 px-2 md:p-3 text-right sticky right-0 bg-gray-100">
+                  {awayTotals.pts}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -223,10 +234,12 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
           <table className="w-full border-collapse text-xs md:text-sm">
             <thead>
               <tr className="bg-blue-900 text-white">
-                <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap sticky left-0 bg-[#1e3a8a]">Player</th>
-                <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">FGM-FGA</th>
-                <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">3PM-3PA</th>
-                <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">FTM-FTA</th>
+                <th className="py-1 px-2 md:p-3 text-left text-xs whitespace-nowrap sticky left-0 bg-blue-900">
+                  Player
+                </th>
+                <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">FGs</th>
+                <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">3PTs</th>
+                <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">FTs</th>
                 <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">OREB</th>
                 <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">REB</th>
                 <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">AST</th>
@@ -234,13 +247,18 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
                 <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">BLK</th>
                 <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">TOV</th>
                 <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap">PF</th>
-                <th className="p-1 md:p-3 text-center text-xs whitespace-nowrap sticky right-0 bg-blue-900">PTS</th>
+                <th className="py-1 px-2 md:p-3 text-right text-xs whitespace-nowrap sticky right-0 bg-blue-900">
+                  PTS
+                </th>
               </tr>
             </thead>
             <tbody>
               {homePlayers.map((player: any, idx: number) => (
                 <tr key={idx} className="border-b border-gray-200">
-                  <td className="p-1 md:p-3 text-center font-bold whitespace-nowrap sticky left-0 bg-white max-w-24 md:max-w-30 overflow-hidden text-ellipsis" title={player.name ? player.name : `#${player.num}`}>{player.name ? player.name : `#${player.num}`}</td>
+                  <td className="py-1 px-1.5 md:p-3 text-left font-bold whitespace-nowrap sticky left-0 bg-gray-100 max-w-24 md:max-w-30 overflow-hidden text-ellipsis"
+                    title={player.name ? player.name : `#${player.num}`}>
+                    {player.name ? player.name : `#${player.num}`}
+                  </td>
                   <td className="p-1 md:p-3 text-center">{player.fgm}-{player.fga}</td>
                   <td className="p-1 md:p-3 text-center">{player.thm}-{player.tha}</td>
                   <td className="p-1 md:p-3 text-center">{player.ftm}-{player.fta}</td>
@@ -251,7 +269,9 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
                   <td className="p-1 md:p-3 text-center">{player.blk}</td>
                   <td className="p-1 md:p-3 text-center">{player.tov}</td>
                   <td className="p-1 md:p-3 text-center">{player.fls}</td>
-                  <td className="p-1 md:p-3 text-center sticky right-0 bg-white font-bold">{player.pts}</td>
+                  <td className="py-1 px-2 md:p-3 text-right font-bold sticky right-0 bg-gray-100">
+                    {player.pts}
+                  </td>
                 </tr>
               ))}
               <tr className="bg-gray-100 border-t-2 border-gray-800 font-bold">
@@ -266,7 +286,9 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
                 <td className="p-1 md:p-3 text-center">{homeTotals.blk}</td>
                 <td className="p-1 md:p-3 text-center">{homeTotals.tov}</td>
                 <td className="p-1 md:p-3 text-center">{homeTotals.fls}</td>
-                <td className="p-1 md:p-3 text-center sticky right-0 bg-gray-100">{homeTotals.pts}</td>
+                <td className="py-1 px-2 md:p-3 text-right sticky right-0 bg-gray-100">
+                  {homeTotals.pts}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -287,7 +309,6 @@ export default async function Game({
     { cache: 'no-store' }
   )
   const game = await res.json()
-  console.log(game)
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans">
