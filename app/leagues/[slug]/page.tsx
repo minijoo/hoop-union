@@ -2,7 +2,7 @@ import GameSummary from "../../components/gameSummary";
 import { preprocessGamesForSummary } from "../../utils/core";
 
 const BASE_URL = process.env.APP_ENV === 'production' ?
-  "https://francis.jordys.site" : process.env.APP_ENV === 'production' ?
+  "https://francis.jordys.site" : process.env.APP_ENV === 'staging' ?
     "https://demo.jordys.site" : "http://localhost:8000"
 
 export default async function LeaguePage({

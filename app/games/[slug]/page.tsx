@@ -1,3 +1,6 @@
+import CollapsableDiv from "@/app/components/collapsableDiv";
+import Leaders from "@/app/components/leaders";
+import { preprocessGamesForSummary } from "@/app/utils/core";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,8 +12,18 @@ const BASE_URL = process.env.APP_ENV === 'production' ?
   "https://francis.jordys.site" : process.env.APP_ENV === 'staging' ?
     "https://demo.jordys.site" : "http://localhost:8000"
 
+const printPercentage = (mades: number, attempts: number) => {
+  return (attempts ? (Math.round((mades / attempts) * 1000) / 10.0).toString() + '%'
+    : '-'
+  );
+
+
+}
+
 const BoxScore = ({ gameData }: { gameData: any }) => {
   const game = gameData;
+
+  preprocessGamesForSummary([game])
 
   const publishedDateText =
     (new Date(game.submitted_on)).toLocaleDateString(
@@ -46,6 +59,13 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
 
   const awayTotals = calculateTotals(awayPlayers);
   const homeTotals = calculateTotals(homePlayers);
+
+  awayTotals.fgp = printPercentage(awayTotals.fgm, awayTotals.fga);
+  awayTotals.thp = printPercentage(awayTotals.thm, awayTotals.tha);
+  awayTotals.ftp = printPercentage(awayTotals.ftm, awayTotals.fta);
+  homeTotals.fgp = printPercentage(homeTotals.fgm, homeTotals.fga);
+  homeTotals.thp = printPercentage(homeTotals.thm, homeTotals.tha);
+  homeTotals.ftp = printPercentage(homeTotals.ftm, homeTotals.fta);
 
   // Get final score from period_scores
   //game.period_scores=[[12,22],[16,31],[44,55]]
@@ -155,9 +175,17 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
         </div>
       </div>
 
+      <div className="mb-4 bg-white rounded-lg shadow">
+        <CollapsableDiv title="Leaders">
+          <div className="">
+            <Leaders leaders={game.leaders} />
+          </div>
+        </CollapsableDiv>
+      </div>
+
       {/* Away Team */}
       <div className="mb-6 md:mb-10 bg-white p-2 md:p-5 rounded-lg shadow">
-        <h2 className="text-base md:text-xl font-bold mb-2 md:mb-4 pb-2 border-b-2 border-gray-800">
+        <h2 className="text-base md:text-xl font-bold mb-2 md:mb-4 border-gray-800">
           {game.away} (Away)
         </h2>
         <div className="overflow-x-auto">
@@ -206,9 +234,9 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
               ))}
               <tr className="bg-gray-100 border-t-2 border-gray-800 font-bold">
                 <td className="p-1 md:p-3 text-center bg-gray-100 sticky left-0">TOTALS</td>
-                <td className="p-1 md:p-3 text-center">{awayTotals.fgm}-{awayTotals.fga}</td>
-                <td className="p-1 md:p-3 text-center">{awayTotals.thm}-{awayTotals.tha}</td>
-                <td className="p-1 md:p-3 text-center">{awayTotals.ftm}-{awayTotals.fta}</td>
+                <td className="p-1 md:p-3 text-center">{awayTotals.fgp}</td>
+                <td className="p-1 md:p-3 text-center">{awayTotals.thp}</td>
+                <td className="p-1 md:p-3 text-center">{awayTotals.ftp}</td>
                 <td className="p-1 md:p-3 text-center">{awayTotals.oreb}</td>
                 <td className="p-1 md:p-3 text-center">{awayTotals.reb}</td>
                 <td className="p-1 md:p-3 text-center">{awayTotals.ast}</td>
@@ -227,7 +255,7 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
 
       {/* Home Team */}
       <div className="bg-white p-2 md:p-5 rounded-lg shadow">
-        <h2 className="text-base md:text-xl font-bold mb-2 md:mb-4 pb-2 border-b-2 border-gray-800">
+        <h2 className="text-base md:text-xl font-bold mb-2 md:mb-4 border-gray-800">
           {game.home} (Home)
         </h2>
         <div className="overflow-x-auto">
@@ -276,9 +304,9 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
               ))}
               <tr className="bg-gray-100 border-t-2 border-gray-800 font-bold">
                 <td className="p-1 md:p-3 text-center bg-gray-100 sticky left-0">TOTALS</td>
-                <td className="p-1 md:p-3 text-center">{homeTotals.fgm}-{homeTotals.fga}</td>
-                <td className="p-1 md:p-3 text-center">{homeTotals.thm}-{homeTotals.tha}</td>
-                <td className="p-1 md:p-3 text-center">{homeTotals.ftm}-{homeTotals.fta}</td>
+                <td className="p-1 md:p-3 text-center">{homeTotals.fgp}</td>
+                <td className="p-1 md:p-3 text-center">{homeTotals.thp}</td>
+                <td className="p-1 md:p-3 text-center">{homeTotals.ftp}</td>
                 <td className="p-1 md:p-3 text-center">{homeTotals.oreb}</td>
                 <td className="p-1 md:p-3 text-center">{homeTotals.reb}</td>
                 <td className="p-1 md:p-3 text-center">{homeTotals.ast}</td>
