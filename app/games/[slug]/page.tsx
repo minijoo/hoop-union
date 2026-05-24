@@ -122,7 +122,7 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
   return (
     <div className="p-2 md:p-5 bg-gray-100 min-h-screen w-full pb-5">
       <div className="flex justify-between px-2 md:px-5 pt-1">
-        <div className="flex flex-col pl-1">
+        <div className="flex flex-col pl-1 mb-3">
           <h1 className="text-lg md:text-2xl font-bold">
             {game.title || `${game.away} @ ${game.home}`}
           </h1>
