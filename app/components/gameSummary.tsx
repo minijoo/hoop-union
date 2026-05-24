@@ -36,7 +36,7 @@ export default function GameSummary({
             <div className="flex flex-col items-end ml-3">
               <div className="flex items-center gap-2 w-full">
                 <span className="w-[14.5px]"></span>
-                <span className="text-lg font-semibold flex-1 pr-2">{away}</span>
+                <span className="text-sm font-semibold flex-1 pr-2">{away}</span>
                 <span className={`text-lg ${awayWon ? 'font-bold' : 'font-normal'}`}>
                   {awayFinalScore}
                 </span>
@@ -54,7 +54,7 @@ export default function GameSummary({
               </div>
               <div className="flex items-center gap-2 w-full">
                 <span className="flex-none">@</span>
-                <span className="text-lg font-semibold flex-1 pr-2">{home}</span>
+                <span className="text-sm font-semibold flex-1 pr-2">{home}</span>
                 <span className={`text-lg ${homeWon ? 'font-bold' : 'font-normal'}`}>
                   {homeFinalScore}
                 </span>
