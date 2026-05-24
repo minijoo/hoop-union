@@ -1,5 +1,4 @@
-
-export default function Leaders({ leaders }) {
+export default function Leaders({ leaders }: any) {
   const ptsLeaderHome = leaders[0].pts[0] > 0 ? leaders[0].pts[0] : '--'
   const ptsLeaderHomeName = leaders[0].pts[0] > 0 ? `${leaders[0].pts[1]}` : '--'
   const ptsLeaderAway = leaders[1].pts[0] > 0 ? leaders[1].pts[0] : '--'
