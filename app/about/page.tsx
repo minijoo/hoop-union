@@ -16,25 +16,25 @@ export default function Home() {
             ABOUT
           </h1>
           <p className="max-w-md text-lg leading-8 text-zinc-600">
-            <b>Hoop Union</b> is a place that aggregates data from Francis and makes it publicly accessible. 
+            <b>Hoop Union</b> is a place that aggregates data from Francis and makes it publicly accessible.
           </p>
         </div>
         <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
           <a
             className="flex h-12 w-40 items-center justify-center gap-2 rounded-full bg-[#fea903] px-5 text-background transition-colors hover:bg-[#383838]"
-            href="http://hoopfrontend-kohl.vercel.app/landing"
+            href="https://hoopfrontend-git-staging-minijoos-projects.vercel.app/landing"
             target="_blank"
             rel="noopener noreferrer"
           >
             About <i>Francis</i>
           </a>
           <a
-            className="flex h-12 w-40 flex-wrap items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04]"
+            className="flex h-12 w-40 flex-wrap items-center justify-center rounded-full border border-solid border-black/8 px-5 transition-colors hover:border-transparent hover:bg-black/4"
             href=""
             target="_blank"
             rel="noopener noreferrer"
           >
-              <span className="text-lg pr-1.5"><FaDiscord /></span> Join Discord 
+            <span className="text-lg pr-1.5"><FaDiscord /></span> Join Discord
 
           </a>
         </div>
