@@ -1,0 +1,4 @@
+Create indexes:
+
+db.public_games.createIndex({tags: 1})
+db.public_games.createIndex({ submitted_on: -1, base_game_id: -1})
