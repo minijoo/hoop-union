@@ -127,7 +127,7 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
             {game.title || `${game.away} @ ${game.home}`}
           </h1>
           <h1 className="text-lg md:text-2xl italic">
-            {game.league}
+            <a className="click-link text-blue-700" href={`/leagues/${game.league_id}`}>{game.league}</a>
           </h1>
           <h2 className="text-md md:text-lg mb-1 md:mb-2">
             {publishedDateText}

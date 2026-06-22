@@ -28,3 +28,7 @@ body {
 .click-icon {
   @apply hover:cursor-pointer active:scale-90 transition-transform duration-150 ease-out;
 }
+
+.click-link {
+  @apply hover:cursor-pointer hover:underline hover:text-blue-900 active:text-blue-900 active:scale-90 transition-transform duration-150 ease-out;
+}

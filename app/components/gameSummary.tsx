@@ -1,7 +1,7 @@
 import Leaders from "./leaders";
 
 export default function GameSummary({
-  league, title, submittedOn, away, home, periodScores, leaders, baseGameId
+  league, title, submittedOn, away, home, periodScores, leaders, baseGameId, tags
 }: any) {
   const awayFinalScore = periodScores[3][0];
   const homeFinalScore = periodScores[3][1];
@@ -15,8 +15,11 @@ export default function GameSummary({
       <div className="w-full max-w-4xl mx-auto py-1 px-2 md:px-3">
         <div className="border border-blue-900 rounded-lg overflow-hidden shadow-sm">
           {/* Header - Desktop */}
-          <div className="hidden md:flex bg-blue-900 text-white px-4 py-1 items-center justify-between text-sm">
+          <div className="hidden md:flex bg-blue-900 text-white px-4 py-1 items-center justify-between text-sm gap-2">
             <span className="font-semibold">{league}</span>
+            {tags?.map((t: string) => (
+              <span key={t}>#{t}</span>
+            ))}
             <span className="flex-1 text-center">{title}</span>
             <span>{submittedOnText}</span>
           </div>

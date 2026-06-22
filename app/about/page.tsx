@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 import { FaDiscord } from "react-icons/fa";
 
@@ -30,7 +29,7 @@ export default function Home() {
           </a>
           <a
             className="flex h-12 w-40 flex-wrap items-center justify-center rounded-full border border-solid border-black/8 px-5 transition-colors hover:border-transparent hover:bg-black/4"
-            href="https://discord.gg/AdXUS7PPr"
+            href="https://discord.gg/2eSfWxSmF"
             target="_blank"
             rel="noopener noreferrer"
           >

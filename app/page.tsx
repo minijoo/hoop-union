@@ -13,13 +13,20 @@ const FRANCIS_URL = process.env.APP_ENV === 'production' ?
   "https://hoopfrontend-kohl.vercel.app" : process.env.APP_ENV === 'staging' ?
     "https://hoopfrontend-git-staging-minijoos-projects.vercel.app" : "http://localhost:5174"
 
+const APIKEY = process.env.FRANCIS_API_KEY || '';
+
 export default async function Home() {
   const leagues = []
   const games = []
 
   const resp0 = await fetch(
     `${BASE_URL}/leagues/list/all`,
-    { cache: 'no-store' }
+    {
+      cache: 'no-store',
+      headers: {
+        'x-key': APIKEY
+      }
+    }
   )
   const respLeagues = await resp0.json()
   Array.isArray(respLeagues) && leagues.push(...respLeagues.reverse())
@@ -51,7 +58,7 @@ export default async function Home() {
                   className="rounded-lg bg-white flex flex-wrap place-content-center px-3 py-2">
                   About <span className="italic pl-1 text-[#fea903]">Francis</span>
                 </a>
-                <a href="https://discord.gg/AdXUS7PPr"
+                <a href="https://discord.gg/2eSfWxSmF"
                   className="rounded-lg bg-white flex flex-wrap place-content-center px-3 py-2 items-center">
                   <span className="text-lg pr-1.5"><FaDiscord /></span> Join Discord
                 </a>
@@ -64,7 +71,7 @@ export default async function Home() {
         </div>
         <div className="flex flex-col gap-1 w-full pb-1 rounded-md">
           <div className="font-semibold text-xl">
-            Recent Games Worldwide
+            Last 50 Games Worldwide
           </div>
           {games.map((game: any) => (
             <GameSummary key={game.base_game_id}
@@ -76,6 +83,7 @@ export default async function Home() {
               leaders={game.leaders}
               periodScores={game.period_scores}
               baseGameId={game.base_game_id}
+              tags={game.tags}
             />
           ))}
         </div>

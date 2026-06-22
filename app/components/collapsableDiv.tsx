@@ -6,7 +6,10 @@ export default function CollapsableDiv({ title, children }: { title: string, chi
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   return <>
-    <div className="py-1 flex items-center justify-center bg-blue-100 border-b border-gray-200 hover:bg-blue-900 hover:cursor-pointer hover:text-white text-gray-600 rounded-t-lg"
+    <div
+      className={`py-1 flex items-center justify-center bg-blue-100 border-b border-gray-200 hover:bg-blue-900 hover:cursor-pointer hover:text-white text-gray-600
+      ${isOpen ? 'rounded-t-lg' : 'rounded-lg'}
+      `}
       onClick={() => setIsOpen(current => !current)}
     >
       <div
