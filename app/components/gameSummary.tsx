@@ -1,7 +1,8 @@
 import Leaders from "./leaders";
 
 export default function GameSummary({
-  league, title, submittedOn, away, home, periodScores, leaders, baseGameId, tags
+  league, title, submittedOn, away, home, periodScores, leaders, baseGameId, tags,
+  homeShort, awayShort, homePic, awayPic
 }: any) {
   const awayFinalScore = periodScores[3][0];
   const homeFinalScore = periodScores[3][1];
@@ -38,8 +39,18 @@ export default function GameSummary({
             </div>
             <div className="flex flex-col items-end ml-3">
               <div className="flex items-center gap-2 w-full">
-                <span className="w-[14.5px]"></span>
-                <span className="text-sm font-semibold flex-1 pr-2">{away}</span>
+                <span className="text-sm font-semibold flex-1 pr-2">
+                  {
+                    awayShort && awayPic
+                      ?
+                      <div className="flex flex-nowrap gap-1 items-center">
+                        <img className="inline-block w-6" src={awayPic} alt={away} />
+                        <div>{awayShort}</div>
+                      </div>
+                      :
+                      <>{away}</>
+                  }
+                </span>
                 <span className={`text-lg ${awayWon ? 'font-bold' : 'font-normal'}`}>
                   {awayFinalScore}
                 </span>
@@ -56,8 +67,18 @@ export default function GameSummary({
                 )}
               </div>
               <div className="flex items-center gap-2 w-full">
-                <span className="flex-none">@</span>
-                <span className="text-sm font-semibold flex-1 pr-2">{home}</span>
+                <span className="text-sm font-semibold flex-1 pr-2">
+                  {
+                    homeShort && homePic
+                      ?
+                      <div className="flex flex-nowrap gap-1 items-center">
+                        <img className="inline-block w-6" src={homePic} alt={home} />
+                        <div>{homeShort}</div>
+                      </div>
+                      :
+                      <>{home}</>
+                  }
+                </span>
                 <span className={`text-lg ${homeWon ? 'font-bold' : 'font-normal'}`}>
                   {homeFinalScore}
                 </span>
@@ -90,7 +111,18 @@ export default function GameSummary({
             {/* Final Score Block - Desktop*/}
             <div className="hidden md:flex flex-col justify-center px-4 py-3 bg-blue-50 border-r border-gray-200 min-w-35">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-semibold text-gray-700">{away}</span>
+                <span className="text-sm font-semibold text-gray-700">
+                  {
+                    awayShort && awayPic
+                      ?
+                      <div className="flex flex-nowrap gap-1 items-center">
+                        <img className="inline-block w-6" src={awayPic} alt={away} />
+                        <div>{awayShort}</div>
+                      </div>
+                      :
+                      <>{away}</>
+                  }
+                </span>
                 <div className="flex items-center ml-3">
                   <span className={`text-lg ${awayWon ? 'font-bold' : 'font-normal'} text-gray-800 mr-1`}>
                     {awayFinalScore}
@@ -110,7 +142,18 @@ export default function GameSummary({
               </div>
               <div className="text-xs text-gray-500 italic text-center mb-2">Final</div>
               <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold text-gray-700">{home}</span>
+                <span className="text-sm font-semibold text-gray-700">
+                  {
+                    homeShort && homePic
+                      ?
+                      <div className="flex flex-nowrap gap-1 items-center">
+                        <img className="inline-block w-6" src={homePic} alt={home} />
+                        <div>{homeShort}</div>
+                      </div>
+                      :
+                      <>{home}</>
+                  }
+                </span>
                 <div className="flex items-center ml-3">
                   <span className={`text-lg ${homeWon ? 'font-bold' : 'font-normal'} text-gray-800 mr-1`}>
                     {homeFinalScore}

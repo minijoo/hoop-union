@@ -61,7 +61,7 @@ export default function LeagueSearch({ leagues }: { leagues: any }) {
     <div className="relative">
       <input type="text" ref={inputRef}
         className="w-full border rounded-md px-1 text-lg"
-        placeholder="Search Leagues by Name/ID"
+        placeholder="Search Leagues by Name"
         onInput={() => {
           search(inputRef.current.value)
         }}
@@ -78,7 +78,7 @@ export default function LeagueSearch({ leagues }: { leagues: any }) {
         ? <div className="absolute top-full w-full">
           <div className="mx-1 bg-gray-100 flex flex-col divide-y divide-gray-200 drop-shadow-lg/50">
             {results.map((league) => (
-              <div key={league.id}
+              <div key={`${league.id}${league.name}`}
                 onClick={() => {
                   saveToLocalStorageThenGoToLeaguePage(league)
                 }}
@@ -97,7 +97,7 @@ export default function LeagueSearch({ leagues }: { leagues: any }) {
       ? <div className="pt-2 flex gap-2 text-xs flex-wrap justify-left">
         <div className="pr-2">Recent Searches</div>
         {recentSearches.map((league, idx) => (
-          <div key={league.id}
+          <div key={`${league.id}${league.name}`}
             onClick={() => {
               saveToLocalStorageThenGoToLeaguePage(league)
             }}

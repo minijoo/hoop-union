@@ -121,11 +121,40 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
 
   return (
     <div className="p-2 md:p-5 bg-gray-100 min-h-screen w-full pb-5">
-      <div className="flex justify-between px-2 md:px-5 pt-1">
-        <div className="flex flex-col pl-1 mb-3">
-          <h1 className="text-lg md:text-2xl font-bold">
-            {game.title || `${game.away} @ ${game.home}`}
-          </h1>
+      <div className="flex flex-wrap justify-around px-2 md:px-5 pt-1">
+        <div className="flex flex-col items-center mb-3 text-lg md:text-2xl font-bold">
+          {
+            game.title
+              ?
+              <span>{game.title}</span>
+              :
+              <div className="flex flex-wrap">
+                {
+                  game.away_short && game.away_pic
+                    ?
+                    <div className="flex flex-nowrap gap-1 items-center">
+                      <img className="inline-block w-8" src={game.away_pic} alt={game.away} />
+                      <div>{game.away_short}</div>
+                    </div>
+                    :
+                    <>{game.away}</>
+                }
+                <div>
+                  &nbsp;@&nbsp;
+                </div>
+
+                {
+                  game.home_short && game.home_pic
+                    ?
+                    <div className="flex flex-nowrap gap-1 items-center">
+                      <img className="inline-block w-8" src={game.home_pic} alt={game.home} />
+                      <div>{game.home_short}</div>
+                    </div>
+                    :
+                    <>{game.home}</>
+                }
+              </div>
+          }
           <h1 className="text-lg md:text-2xl italic">
             <a className="click-link text-blue-700" href={`/leagues/${game.league_id}`}>{game.league}</a>
           </h1>
@@ -149,7 +178,9 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
             </thead>
             <tbody>
               <tr>
-                <td className="border border-gray-300 px-3 md:px-4 py-2 font-semibold">{game.away}</td>
+                <td className="border border-gray-300 px-3 md:px-4 py-2 font-semibold">
+                  {game.away}
+                </td>
                 {periods.map((period, idx) => (
                   <td key={idx} className="border border-gray-300 px-3 md:px-4 py-2 text-center">
                     {period.away}
@@ -160,7 +191,9 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
                 </td>
               </tr>
               <tr>
-                <td className="border border-gray-300 px-3 md:px-4 py-2 font-semibold">{game.home}</td>
+                <td className="border border-gray-300 px-3 md:px-4 py-2 font-semibold">
+                  {game.home_short ? game.home_short : game.home}
+                </td>
                 {periods.map((period, idx) => (
                   <td key={idx} className="border border-gray-300 px-3 md:px-4 py-2 text-center">
                     {period.home}
@@ -186,7 +219,7 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
       {/* Away Team */}
       <div className="mb-6 md:mb-10 bg-white p-2 md:p-5 rounded-lg shadow">
         <h2 className="text-base md:text-xl font-bold mb-2 md:mb-4 border-gray-800">
-          {game.away} (Away)
+          {game.away} ({game.away_short ? game.away_short : 'Away'})
         </h2>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-xs md:text-sm">
@@ -256,7 +289,7 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
       {/* Home Team */}
       <div className="bg-white p-2 md:p-5 rounded-lg shadow">
         <h2 className="text-base md:text-xl font-bold mb-2 md:mb-4 border-gray-800">
-          {game.home} (Home)
+          {game.home} ({game.home_short ? game.home_short : 'Home'})
         </h2>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-xs md:text-sm">

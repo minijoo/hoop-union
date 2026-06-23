@@ -80,6 +80,10 @@ export default async function Home() {
               submittedOn={game.submitted_on}
               away={game.away}
               home={game.home}
+              awayShort={game.away_short}
+              homeShort={game.home_short}
+              awayPic={game.away_pic}
+              homePic={game.home_pic}
               leaders={game.leaders}
               periodScores={game.period_scores}
               baseGameId={game.base_game_id}
