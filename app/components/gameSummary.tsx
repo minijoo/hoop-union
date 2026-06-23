@@ -27,15 +27,20 @@ export default function GameSummary({
 
           {/* Header - Mobile */}
           <div className="md:hidden bg-blue-900 text-white px-4 py-2 flex items-center justify-between">
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 text-xs">
               <span className="text-xs">
                 <span className="font-semibold">{league}</span>
               </span>
               <span className="text-xs text-blue-200">{submittedOnText}</span>
-              {false // to be removed
+              {title
                 ? <span className="text-sm font-semibold">{title}</span>
                 : <></>
               }
+              <div className="text-xs flex gap-1">
+                {tags?.map((t: string) => (
+                  <span key={t}>#{t}</span>
+                ))}
+              </div>
             </div>
             <div className="flex flex-col items-end ml-3">
               <div className="flex items-center gap-2 w-full">

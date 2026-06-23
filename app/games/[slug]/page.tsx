@@ -121,8 +121,8 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
 
   return (
     <div className="p-2 md:p-5 bg-gray-100 min-h-screen w-full pb-5">
-      <div className="flex flex-wrap justify-around px-2 md:px-5 pt-1">
-        <div className="flex flex-col items-center mb-3 text-lg md:text-2xl font-bold">
+      <div className="flex flex-wrap justify-around px-2 md:px-5 pt-1 items-center">
+        <div className="flex flex-col items-center mb-3 text-lg md:text-2xl font-bold px-1">
           {
             game.title
               ?
@@ -163,7 +163,7 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
           </h2>
         </div>
         {/* Period Scores Table */}
-        <div className="flex justify-center mb-4">
+        <div className="flex justify-center mb-4 px-1">
           <table className="border-collapse border border-gray-300 text-xs md:text-sm">
             <thead>
               <tr className="bg-gray-200">
@@ -179,7 +179,7 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
             <tbody>
               <tr>
                 <td className="border border-gray-300 px-3 md:px-4 py-2 font-semibold">
-                  {game.away}
+                  {game.away_short ? game.away_short : game.away}
                 </td>
                 {periods.map((period, idx) => (
                   <td key={idx} className="border border-gray-300 px-3 md:px-4 py-2 text-center">
