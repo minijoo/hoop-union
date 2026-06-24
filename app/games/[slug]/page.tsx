@@ -370,8 +370,12 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const game = await getGame(slug);
+  let awayScore, homeScore;
+  if (game.period_scores && game.period_scores.length) {
+    [awayScore, homeScore] = game.period_scores[game.period_scores.length - 1]
+  }
   return {
-    title: `${game.away} @ ${game.home} — ${game.league}`,
+    title: `${game.away}${awayScore ? ' ' + awayScore : ''} @ ${game.home}${homeScore ? ' ' + homeScore : ''} — ${game.league}`,
     description: game.title || ''
   }
 }
