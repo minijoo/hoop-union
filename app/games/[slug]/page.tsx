@@ -2,11 +2,7 @@ import CollapsableDiv from "@/app/components/collapsableDiv";
 import Leaders from "@/app/components/leaders";
 import { preprocessGamesForSummary } from "@/app/utils/core";
 import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Game Page",
-  description: "",
-};
+import { cache } from "react";
 
 const BASE_URL = process.env.APP_ENV === 'production' ?
   "https://francis.jordys.site" : process.env.APP_ENV === 'staging' ?
@@ -359,17 +355,30 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
   );
 };
 
-export default async function Game({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
-  const { slug } = await params
+const getGame = cache(async (slug: string) => {
   const res = await fetch(
     `${BASE_URL}/games/public/id/${slug}`,
     { cache: 'no-store' }
   )
-  const game = await res.json()
+  return await res.json()
+});
+
+type Props = {
+  params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const game = await getGame(slug);
+  return {
+    title: `${game.away} @ ${game.home} — ${game.league}`,
+    description: game.title || ''
+  }
+}
+
+export default async function Game({ params, }: Props) {
+  const { slug } = await params
+  const game = await getGame(slug);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans">
