@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const leagueInfo = await getLeagueInfo(slug);
 
   return {
-    title: `${leagueInfo.name} — ${leagueInfo.location}`,
+    title: `${leagueInfo.name} — ${leagueInfo.location} — Hoop Union`,
     description: 'View league info and games'
   }
 }

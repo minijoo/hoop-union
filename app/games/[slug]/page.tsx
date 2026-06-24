@@ -375,7 +375,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     [awayScore, homeScore] = game.period_scores[game.period_scores.length - 1]
   }
   return {
-    title: `${game.away}${awayScore ? ' ' + awayScore : ''} @ ${game.home}${homeScore ? ' ' + homeScore : ''} — ${game.league}`,
+    title: `${game.away}${awayScore ? ' ' + awayScore : ''} @ ${game.home}${homeScore ? ' ' + homeScore : ''} — ${game.league} — Hoop Union`,
     description: game.title || ''
   }
 }
