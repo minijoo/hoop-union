@@ -114,8 +114,8 @@ export default function GameSummary({
           {/* Stats Grid */}
           <div className="flex bg-white">
             {/* Final Score Block - Desktop*/}
-            <div className="hidden md:flex flex-col justify-center px-4 py-3 bg-blue-50 border-r border-gray-200 min-w-35">
-              <div className="flex items-center justify-between mb-2">
+            <div className="hidden md:flex flex-col justify-center px-4 py-3 bg-blue-50 border-r border-gray-200 ">
+              <div className="flex items-center justify-between mb-2 min-w-35">
                 <span className="text-sm font-semibold text-gray-700">
                   {
                     awayShort && awayPic
@@ -146,7 +146,7 @@ export default function GameSummary({
                 </div>
               </div>
               <div className="text-xs text-gray-500 italic text-center mb-2">Final</div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between min-w-35">
                 <span className="text-sm font-semibold text-gray-700">
                   {
                     homeShort && homePic
@@ -179,7 +179,7 @@ export default function GameSummary({
             </div>
 
             {/* Leaders Divider - Desktop*/}
-            <div className="hidden md:flex items-center justify-center bg-blue-100 border-r border-gray-200" style={{ width: '24px' }}>
+            <div className="hidden md:flex items-center justify-center bg-blue-100 border-r border-gray-200 w-6" >
               <div
                 className="text-xs font-semibold text-gray-600 uppercase tracking-wider"
                 style={{
