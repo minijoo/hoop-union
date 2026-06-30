@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { FaDiscord } from "react-icons/fa";
 import BouncingBasketball from "./components/bouncingBall";
 import LeagueSearch from "./components/leagueSearch";
@@ -11,7 +10,7 @@ const BASE_URL = process.env.APP_ENV === 'production' ?
 
 const FRANCIS_URL = process.env.APP_ENV === 'production' ?
   "https://hoopfrontend-kohl.vercel.app" : process.env.APP_ENV === 'staging' ?
-    "https://hoopfrontend-git-staging-minijoos-projects.vercel.app" : "http://localhost:5174"
+    "https://beta.thefrancis.app" : "http://localhost:5174"
 
 const APIKEY = process.env.FRANCIS_API_KEY || '';
 
