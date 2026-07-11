@@ -2,7 +2,7 @@ import Leaders from "./leaders";
 
 export default function GameSummary({
   league, title, submittedOn, away, home, periodScores, leaders, baseGameId, tags,
-  homeShort, awayShort, homePic, awayPic
+  homeShort, awayShort, homePic, awayPic, mcv
 }: any) {
   const awayFinalScore = periodScores[3][0];
   const homeFinalScore = periodScores[3][1];
@@ -22,7 +22,10 @@ export default function GameSummary({
               <span key={t}>#{t}</span>
             ))}
             <span className="flex-1 text-center">{title}</span>
-            <span>{submittedOnText}</span>
+            <div className="flex gap-2">
+              <span>{submittedOnText}</span>
+              {mcv && mcv !== 0 ? <span><i>{mcv}</i> 👀</span> : <></>}
+            </div>
           </div>
 
           {/* Header - Mobile */}

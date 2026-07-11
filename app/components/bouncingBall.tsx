@@ -148,7 +148,7 @@ export default function BouncingBasketball({
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      className="relative w-full h-full bg-linear-to-b from-blue-300 to-blue-200 cursor-pointer rounded-md touch-none"
+      className="relative w-full h-full bg-linear-to-b from-blue-300 to-blue-200 rounded-md touch-none"
     >
       {children}
       <div

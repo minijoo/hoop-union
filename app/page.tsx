@@ -5,14 +5,14 @@ import GameSummary from "./components/gameSummary";
 import { preprocessGamesForSummary } from "./utils/core";
 
 const BASE_URL = process.env.APP_ENV === 'production' ?
-  "https://francis.jordys.site" : process.env.APP_ENV === 'staging' ?
+  "https://bucky.jordys.site" : process.env.APP_ENV === 'staging' ?
     "https://demo.jordys.site" : "http://localhost:8000"
 
-const FRANCIS_URL = process.env.APP_ENV === 'production' ?
+const BUCKY_URL = process.env.APP_ENV === 'production' ?
   "https://hoopfrontend-kohl.vercel.app" : process.env.APP_ENV === 'staging' ?
     "https://beta.thefrancis.app" : "http://localhost:5174"
 
-const APIKEY = process.env.FRANCIS_API_KEY || '';
+const APIKEY = process.env.BUCKY_API_KEY || '';
 
 export default async function Home() {
   const leagues = []
@@ -47,15 +47,15 @@ export default async function Home() {
           <BouncingBasketball>
             <div className="w-full h-full px-5 flex flex-col justify-center gap-2">
               <div className="font-semibold text-2xl">
-                The best place for Francis stats and data
+                The best place for Bucky stats and data
               </div>
               <div className="text-md">
-                Hoop Union aggregates data from Francis and makes it publicly accessible.
+                Hoop Union aggregates data from Bucky and makes it publicly accessible.
               </div>
               <div className="flex flex-row gap-3 text-md">
-                <a href={`${FRANCIS_URL}/landing`}
+                <a href={`${BUCKY_URL}/landing`}
                   className="rounded-lg bg-white flex flex-wrap place-content-center px-3 py-2">
-                  About <span className="italic pl-1 text-[#fea903]">Francis</span>
+                  About <span className="italic pl-1 text-[#fea903]">Bucky</span>
                 </a>
                 <a href="https://discord.gg/2eSfWxSmF"
                   className="rounded-lg bg-white flex flex-wrap place-content-center px-3 py-2 items-center">
@@ -87,6 +87,7 @@ export default async function Home() {
               periodScores={game.period_scores}
               baseGameId={game.base_game_id}
               tags={game.tags}
+              mcv={game.mcv}
             />
           ))}
         </div>

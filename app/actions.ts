@@ -1,10 +1,10 @@
 'use server';
 
 const BASE_URL = process.env.APP_ENV === 'production' ?
-  "https://francis.jordys.site" : process.env.APP_ENV === 'staging' ?
+  "https://bucky.jordys.site" : process.env.APP_ENV === 'staging' ?
     "https://demo.jordys.site" : "http://localhost:8000"
 
-const APIKEY = process.env.FRANCIS_API_KEY || '';
+const APIKEY = process.env.BUCKY_API_KEY || '';
 
 export async function fetchLeagueGames(
   leagueId: string, tags: string, lastDate: string = '', lastBaseGameId: string = '', limit: number = 10

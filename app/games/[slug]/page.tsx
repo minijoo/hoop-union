@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { cache } from "react";
 
 const BASE_URL = process.env.APP_ENV === 'production' ?
-  "https://francis.jordys.site" : process.env.APP_ENV === 'staging' ?
+  "https://bucky.jordys.site" : process.env.APP_ENV === 'staging' ?
     "https://demo.jordys.site" : "http://localhost:8000"
 
 const printPercentage = (mades: number, attempts: number) => {
@@ -118,7 +118,7 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
   return (
     <div className="p-2 md:p-5 bg-gray-100 min-h-screen w-full pb-5">
       <div className="flex flex-wrap justify-around px-2 md:px-5 pt-1 items-center">
-        <div className="flex flex-col items-center mb-3 text-lg md:text-2xl font-bold px-1">
+        <div className="flex flex-col items-center mb-1 text-lg md:text-2xl font-bold px-1 md:mb-2">
           {
             game.title
               ?
@@ -154,9 +154,16 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
           <h1 className="text-lg md:text-2xl italic">
             <a className="click-link text-blue-700" href={`/leagues/${game.league_id}`}>{game.league}</a>
           </h1>
-          <h2 className="text-md md:text-lg mb-1 md:mb-2">
+          <h2 className="text-md md:text-lg">
             {publishedDateText}
           </h2>
+          {
+            game.mcv
+            &&
+            <h2 className="text-sm md:text-md mb-1 md:mb-2 font-normal">
+              {game.mcv} 👀
+            </h2>
+          }
         </div>
         {/* Period Scores Table */}
         <div className="flex justify-center mb-4 px-1">
