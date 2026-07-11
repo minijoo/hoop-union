@@ -10,7 +10,7 @@ const BASE_URL = process.env.APP_ENV === 'production' ?
 
 const BUCKY_URL = process.env.APP_ENV === 'production' ?
   "https://hoopfrontend-kohl.vercel.app" : process.env.APP_ENV === 'staging' ?
-    "https://beta.thefrancis.app" : "http://localhost:5174"
+    "https://beta.thebucky.app" : "http://localhost:5174"
 
 const APIKEY = process.env.BUCKY_API_KEY || '';
 

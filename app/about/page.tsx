@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const BUCKY_URL = process.env.APP_ENV === 'production' ?
   "https://hoopfrontend-kohl.vercel.app" : process.env.APP_ENV === 'staging' ?
-    "https://beta.thefrancis.app" : "http://localhost:5174"
+    "https://beta.thebucky.app" : "http://localhost:5174"
 
 export default function Home() {
   return (
