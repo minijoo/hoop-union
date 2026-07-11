@@ -24,7 +24,7 @@ export default function GameSummary({
             <span className="flex-1 text-center">{title}</span>
             <div className="flex gap-2">
               <span>{submittedOnText}</span>
-              {mcv && mcv !== 0 ? <span><i>{mcv}</i> 👀</span> : <></>}
+              {mcv && mcv !== 0 ? <span><span className="pr-0.5">{mcv}</span>👀</span> : <></>}
             </div>
           </div>
 
@@ -40,6 +40,7 @@ export default function GameSummary({
                 : <></>
               }
               <div className="text-xs flex gap-1">
+                {mcv && mcv !== 0 ? <span><span className="pr-0.5">{mcv}</span>👀</span> : <></>}
                 {tags?.map((t: string) => (
                   <span key={t}>#{t}</span>
                 ))}

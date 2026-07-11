@@ -158,11 +158,22 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
             {publishedDateText}
           </h2>
           {
-            game.mcv
+            (game.mcv || game.tags)
             &&
-            <h2 className="text-sm md:text-md mb-1 md:mb-2 font-normal">
-              {game.mcv} 👀
-            </h2>
+            <div className="text-sm md:text-md font-normal flex gap-1">
+              {
+                game.mcv
+                &&
+                <span>{game.mcv} 👀</span>
+              }
+              {
+                game.tags
+                &&
+                game.tags?.map((t: string) => (
+                  <span key={t}>#{t}</span>
+                ))
+              }
+            </div>
           }
         </div>
         {/* Period Scores Table */}
