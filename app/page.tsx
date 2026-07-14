@@ -6,7 +6,7 @@ import { preprocessGamesForSummary } from "./utils/core";
 
 const BASE_URL = process.env.APP_ENV === 'production' ?
   "https://bucky.jordys.site" : process.env.APP_ENV === 'staging' ?
-    "https://demo.jordys.site" : "http://localhost:8000"
+    "https://api.staging.thebucky.app" : "http://localhost:8000"
 
 const BUCKY_URL = process.env.APP_ENV === 'production' ?
   "https://hoopfrontend-kohl.vercel.app" : process.env.APP_ENV === 'staging' ?
