@@ -162,13 +162,11 @@ const BoxScore = ({ gameData }: { gameData: any }) => {
             &&
             <div className="text-sm md:text-md font-normal flex gap-1">
               {
-                game.mcv
+                !!game.mcv
                 &&
                 <span>{game.mcv} 👀</span>
               }
               {
-                game.tags
-                &&
                 game.tags?.map((t: string) => (
                   <span key={t}>#{t}</span>
                 ))
