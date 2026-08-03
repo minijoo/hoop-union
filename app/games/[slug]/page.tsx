@@ -6,7 +6,7 @@ import { cache } from "react";
 
 const BASE_URL = process.env.APP_ENV === 'production' ?
   "https://bucky.jordys.site" : process.env.APP_ENV === 'staging' ?
-    "https://api.staging.thebucky.app" : "http://localhost:8000"
+    "https://api.staging.bucky.live" : "http://localhost:8000"
 
 const printPercentage = (mades: number, attempts: number) => {
   return (attempts ? (Math.round((mades / attempts) * 1000) / 10.0).toString() + '%'

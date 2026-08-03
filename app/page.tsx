@@ -6,11 +6,11 @@ import { preprocessGamesForSummary } from "./utils/core";
 
 const BASE_URL = process.env.APP_ENV === 'production' ?
   "https://bucky.jordys.site" : process.env.APP_ENV === 'staging' ?
-    "https://api.staging.thebucky.app" : "http://localhost:8000"
+    "https://api.staging.bucky.live" : "http://localhost:8000"
 
 const BUCKY_URL = process.env.APP_ENV === 'production' ?
   "https://hoopfrontend-kohl.vercel.app" : process.env.APP_ENV === 'staging' ?
-    "https://beta.thebucky.app" : "http://localhost:5174"
+    "https://beta.bucky.live" : "http://localhost:5174"
 
 const APIKEY = process.env.BUCKY_API_KEY || '';
 
