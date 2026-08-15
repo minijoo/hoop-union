@@ -57,7 +57,7 @@ export default async function Home() {
                   className="rounded-lg bg-white flex flex-wrap place-content-center px-3 py-2">
                   About <span className="italic pl-1 text-[#fea903]">Bucky</span>
                 </a>
-                <a href="https://discord.gg/2eSfWxSmF"
+                <a href="https://discord.gg/zTgbxQB9TF"
                   className="rounded-lg bg-white flex flex-wrap place-content-center px-3 py-2 items-center">
                   <span className="text-lg pr-1.5"><FaDiscord /></span> Join Discord
                 </a>

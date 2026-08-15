@@ -33,7 +33,7 @@ export default function Home() {
           </a>
           <a
             className="flex h-12 w-40 flex-wrap items-center justify-center rounded-full border border-solid border-black/8 px-5 transition-colors hover:border-transparent hover:bg-black/4"
-            href="https://discord.gg/2eSfWxSmF"
+            href="https://discord.gg/zTgbxQB9TF"
             target="_blank"
             rel="noopener noreferrer"
           >
